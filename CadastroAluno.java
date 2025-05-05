@@ -66,7 +66,7 @@ public class CadastroAluno {
         Scanner scn = new Scanner(System.in);
         System.out.println("Cadastro de Nova Disciplina");
         System.out.print("Informe o Codigo ");
-        disciplina[j].cod = scn.nextInt();
+        disciplina[j].cod = scn.nextInt(); //não é pra ler o código, men, é autogerado... eu acho melhor só colocar o mesmo número que o do vetor, é até mais fácil de ler ;)
         scn.nextLine(); // limpar buffer
 
         System.out.print("Nome: ");
@@ -79,10 +79,10 @@ public class CadastroAluno {
         disciplina[j].NomeProf = scn.nextLine();
 
         System.out.println("Disciplina cadastrada com sucesso!");
-        System.out.println("Se quiser continuar digite 0 senão 1 para sair");
+        System.out.println("Se quiser continuar, digite 0. Se não, digite 1 para sair");
         aux = scn.nextInt();
         while((aux < 0) ||(aux > 1) ){
-            System.out.println("Número invalido");
+            System.out.println("Número inválido...");
             aux = scn.nextInt();
         }
         
@@ -109,33 +109,81 @@ public class CadastroAluno {
             }
         }
         if (encontrado == 0) {
-            System.out.println("Disciplina não encontrada");
-            System.out.println("Se quiser continuar digite 0 senao 1");
+            System.out.println("Disciplina não encontrada...");
+            System.out.println("Se quiser continuar, digite 0. Se não, 1.");
              aux = scn.nextInt();
             while((aux < 0) ||(aux > 1) ){
-                System.out.println("Número invalido");
+                System.out.println("Número inválido...");
                 aux = scn.nextInt();
             }
 
         }
     }    
 }
+public static void  ListaDisciplina(Disciplina[] disciplina){
+    for (int i = 0; i < disciplina.length; i++) {
+        if (disciplina[i].nome == null){
+            i = disciplina.length;
+            break;
+        } else {
+            System.out.println("Cód.     Disciplina     Ano     Professor");
+            System.out.println(disciplina[i].cod + "     " + disciplina[i].nome + "     " + disciplina[i].ano + "     " + disciplina[i].NomeProf);
+        }
+    }
+}
+public static void  CadastrarAluno(Aluno[] alunos){
+    int j = 0;
+    int aux = 0;
+    for (int i = 0; i < alunos.length; i++) {
+        if (disciplina[i].nome == null) {
+            j = i;
+            break;
+        }
+    }
 
+    if (j == 0) {
+        System.out.println("Todas as vagas para alunos estão preenchidas...");
+        return;
+    }
 
-    public static void menu(Disciplina[] disciplinas) {
+    if(aux == 0){
+        Scanner scn = new Scanner(System.in);
+
+        alunos[j].cod = j;
+        System.out.println("Cadastro de Aluno");
+        System.out.print("Nome: ");
+        alunos[j].nome = scn.nextLine();
+        System.out.print("Endereço: ");
+        alunos[j].endereco = scn.nextLine();
+        System.out.println("Estudante cadastrado com sucesso!");
+        System.out.println("Se quiser continuar, digite 0. Se não, digite 1 para sair");
+        aux = scn.nextInt();
+        while((aux < 0) ||(aux > 1) ){
+            System.out.println("Número inválido...");
+            aux = scn.nextInt();
+        }
+        
+    }
+}
+
+    public static void menu(Disciplina[] disciplinas, Aluno[] alunos) {
 
         System.out.println("-------------- Menu -------------");
             System.out.println("1: Cadastrar Disciplina");
             System.out.println("2: Remover Disciplina");
-            System.out.println("3: Listar Disciplinas (em breve)");
-            System.out.println("4: Cadastrar Aluno (em breve)");
-            System.out.println("5: Alterar Aluno (em breve)");
+            System.out.println("3: Listar Disciplinas");
+            System.out.println("4: Cadastrar Aluno");
+            System.out.println("5: Alterar dados - Aluno (em breve)");
+            System.out.println("6: Listar os alunos - ordem de cadastro (em breve)");
+            System.out.println("7: Listar os alunos - ordem de média  (em breve)");
+            System.out.println("8: Matricular um Aluno (em breve)");
+            System.out.println("9: Listar as matrículas (em breve)");
             System.out.println("0: Sair");
             System.out.print("Escolha uma opção: ");
         Scanner scn = new Scanner(System.in);
         int opcao = scn.nextInt();
-        while ((opcao < 1) || (opcao > 5)) {
-            System.out.print("Opcao invalida, digite novamente: ");
+        while ((opcao < 0) || (opcao > 5)) { //o 0 é preciso pra sair do menu
+            System.out.print("Opcão inválida, digite novamente: ");
             opcao = scn.nextInt();
         }
 
@@ -144,6 +192,12 @@ public class CadastroAluno {
         }
         if (opcao == 2) {
             RemoverDisciplina(disciplinas);
+        }
+        if (opcao == 3) {
+            ListaDisciplina(disciplinas);
+        }
+        if (opcao == 4) {
+            CadastrarAluno(alunos);
         }
 
     }
