@@ -4,49 +4,59 @@ import java.util.Scanner;
 public class CadastroAluno {
     
     public static void init(Aluno[] alunos , Disciplina[] disciplinas){
-        Random rnd = new Random();
-        String[] nomesDisciplinas = {"MAT", "HIS", "POO"};
-        String[] professores = {"Matheus", "Carla", "Gustavo"};
-        String[] aluno = {"Carlos", "Lucas", "Pedro", "Luciano", "Mateus"};
-        String[] enderecos = {"Rua 1", "Rua 2", "Rua 3"};
-        String[] anos = {"2025", "2024", "2023"};
+        Aluno a = new Aluno();
+        a.nome = "Mateus";
+        a.cod = 1;
+        a.endereco = "Rua cabsugjbed, No. 17";
+        a.DisMatriculado = "POO";
+        a.NotasDis = 7;
+        insercaoAluno(alunos, a);
+        a = new Aluno();
+        a.nome = "BJHCH";
+        a.cod = 2;
+        a.endereco = "Rua dos Bobos, No. 0";
+        a.DisMatriculado = "POO";
+        a.NotasDis = 0;
+        insercaoAluno(alunos, a);
+        a = new Aluno();
+        a.nome = "AAAAAA";
+        a.cod = 1;
+        a.endereco = "Rua lettuce, No. 5";
+        a.DisMatriculado = "POO";
+        a.NotasDis = 5;
+        insercaoAluno(alunos, a);
 
-        int cont = 0;
-
-        for (int i = 0; i < 3; i++){
-            disciplinas[i].cod = i + 1;
-            disciplinas[i].nome = nomesDisciplinas[rnd.nextInt(nomesDisciplinas.length)];
-            disciplinas[i].ano = anos[rnd.nextInt(anos.length)];
-            disciplinas[i].NomeProf = professores[rnd.nextInt(professores.length)];
-            
-        }
-
-
-        for (int i = 0; i < 5; i++) {
-            alunos[i].cod = i + 1;
-            alunos[i].nome = aluno[rnd.nextInt(aluno.length)];
-            if(i != 0){
-            while(cont == 2){
-                for(int j = 0; j < i; j++){
-                    if (alunos[i].nome == alunos[j].nome) {
-                        cont++;
-                    }   
-                }
-                if(cont == 2){
-                   alunos[i].nome = aluno[rnd.nextInt(aluno.length)];
-                   cont = 0; 
-                }  
+        Disciplina d = new Disciplina();
+        d.cod = 0;
+        d.nome = "POO";
+        d.ano = 2025;
+        d.nomeProf = "Luciano";
+        insercaoDiscip(disciplinas, d);
+    }
+    menu(disciplinas);
+}
+public static boolean insercaoAluno(Aluno[] alunos, Aluno a){
+    if (alunos != null && a != null){
+        for (int i = 0; i < alunos.length; i++){
+            if (alunos[i] == null){
+                alunos[i] = a;
+                return true;
             }
         }
-            alunos[i].endereco = enderecos[rnd.nextInt(enderecos.length)];
-            alunos[i].DisMatriculado = nomesDisciplinas[rnd.nextInt(nomesDisciplinas.length)];
-            alunos[i].NotasDis = i + 1;
     }
-
-        menu(disciplinas);
-
+    return false;
+}
+public static boolean insercaoDiscip(Disciplina[] discips, Disciplina d){
+    if (discips != null && d != null){
+        for (int i = 0; i < discips.length; i++){
+            if (discips[i] == null){
+                discips[i] = d;
+                return true;
+            }
+        }
     }
-
+    return false;
+}
    public static void  CadastrarDisciplina(Disciplina[] disciplina){
     int j = 0;
     int aux = 0;
