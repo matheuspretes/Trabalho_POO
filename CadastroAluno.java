@@ -2,26 +2,54 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class CadastroAluno {
-    
+
     public static void init(Aluno[] alunos , Disciplina[] disciplinas){
+        Random rnd = new Random();
+        String[] nomesDisciplinas = {"MAT", "HIS", "POO"};
+        String[] professores = {"Matheus", "Carla", "Gustavo"};
+        String[] aluno = {"Carlos", "Lucas", "Pedro", "Luciano", "Mateus"};
+        String[] enderecos = {"Rua 1", "Rua 2", "Rua 3"};
+        String[] anos = {"2025", "2024", "2023"};
+
+        int cont = 0;
+
+        for (int i = 0; i < 3; i++){
+            
+        }
+
+
+        for (int i = 0; i < 5; i++) {
+            alunos[i].cod = i + 1;
+            alunos[i].nome = aluno[rnd.nextInt(aluno.length)];
+            if(i != 0){
+            while(cont == 2){
+                for(int j = 0; j < i; j++){
+                    if (alunos[i].nome == alunos[j].nome) {
+                        cont++;
+                    }   
+                }
+                if(cont == 2){
+                   alunos[i].nome = aluno[rnd.nextInt(aluno.length)];
+                   cont = 0; 
+                }  
         Aluno a = new Aluno();
         a.nome = "Mateus";
         a.cod = 1;
-        a.endereco = "Rua cabsugjbed, No. 17";
+        a.endereco = "Rua cabsugjbed";
         a.DisMatriculado = "POO";
         a.NotasDis = 7;
         insercaoAluno(alunos, a);
         a = new Aluno();
         a.nome = "BJHCH";
         a.cod = 2;
-        a.endereco = "Rua dos Bobos, No. 0";
+        a.endereco = "Rua dos Bobos";
         a.DisMatriculado = "POO";
         a.NotasDis = 0;
         insercaoAluno(alunos, a);
         a = new Aluno();
         a.nome = "AAAAAA";
         a.cod = 1;
-        a.endereco = "Rua lettuce, No. 5";
+        a.endereco = "Rua lettuce";
         a.DisMatriculado = "POO";
         a.NotasDis = 5;
         insercaoAluno(alunos, a);
@@ -30,12 +58,16 @@ public class CadastroAluno {
         d.cod = 0;
         d.nome = "POO";
         d.ano = 2025;
-        d.nomeProf = "Luciano";
+        d.NomeProf = "Luciano";
         insercaoDiscip(disciplinas, d);
     }
     menu(disciplinas, alunos);
 }
+}
+    
+}
 public static boolean insercaoAluno(Aluno[] alunos, Aluno a){
+     Random rnd = new Random();
     if (alunos != null && a != null){
         for (int i = 0; i < alunos.length; i++){
             if (alunos[i] == null){
@@ -43,7 +75,9 @@ public static boolean insercaoAluno(Aluno[] alunos, Aluno a){
                 return true;
             }
         }
+            int i = 0;
     }
+
     return false;
 }
 public static boolean insercaoDiscip(Disciplina[] discips, Disciplina d){
@@ -55,6 +89,7 @@ public static boolean insercaoDiscip(Disciplina[] discips, Disciplina d){
             }
         }
     }
+
     return false;
 }
    public static void  CadastrarDisciplina(Disciplina[] disciplina){
@@ -83,7 +118,7 @@ public static boolean insercaoDiscip(Disciplina[] discips, Disciplina d){
         disciplina[j].nome = scn.nextLine();
 
         System.out.print("Ano: ");
-        disciplina[j].ano = scn.nextLine();
+        disciplina[j].ano = scn.nextInt();
 
         System.out.print("Nome do Professor: ");
         disciplina[j].NomeProf = scn.nextLine();
@@ -95,7 +130,7 @@ public static boolean insercaoDiscip(Disciplina[] discips, Disciplina d){
             System.out.println("Número inválido...");
             aux = scn.nextInt();
         }
-        
+
     }
 
     }
@@ -106,9 +141,9 @@ public static boolean insercaoDiscip(Disciplina[] discips, Disciplina d){
         Scanner scn = new Scanner(System.in);
         System.out.print("Informe o código da disciplina a ser removida: ");
         int codigo = scn.nextInt();
-    
+
         int encontrado = 0;
-    
+
         for (int i = 0; i < disciplina.length; i++) {
             if (disciplina[i].nome != null && disciplina[i].cod == codigo) {
                 // "Remove" limpando os dados
@@ -141,7 +176,7 @@ public static void  ListaDisciplina(Disciplina[] disciplina){
         }
     }
 }
-public static void  CadastrarAluno(Aluno[] alunos){
+public static void  CadastrarAluno(Aluno[] alunos, Disciplina[] disciplina){
     int j = 0;
     int aux = 0;
     for (int i = 0; i < alunos.length; i++) {
@@ -172,37 +207,18 @@ public static void  CadastrarAluno(Aluno[] alunos){
             System.out.println("Número inválido...");
             aux = scn.nextInt();
         }
-        
+
     }
 }
 
-public static boolean AlterarAluno(Aluno[] alunos, Disciplina[] disciplinas){
-    boolean teste = false;
-    for (int i = 0; i < alunos.length; i++){
-        if (alunos[i] == null){
-            int j = i;
-            i = alunos.length;
-        } else{
-            int j = alunos.length;
-        }
-    }
-    System.out.println("Qual informação você quer modificar?");
-    System.out.println("Digite 1 para mudar: NOME");
-    System.out.println("Digite 2 para mudar: ENDEREÇO");
-    System.out.println("Digite 3 para mudar: DISCIPLINAS MATRICULADAS");
-    System.out.println("Digite 4 para mudar: NOTAS");
-    Scanner scn = new Scanner(System.in);
-    int opcao = scn.nextInt();
-}
-
-    public static void menu(Disciplina[] disciplinas, Aluno[] alunos) {
+    public static void menu (Disciplina[] disciplinas, Aluno[] alunos) {
 
         System.out.println("-------------- Menu -------------");
             System.out.println("1: Cadastrar Disciplina");
             System.out.println("2: Remover Disciplina");
             System.out.println("3: Listar Disciplinas");
             System.out.println("4: Cadastrar Aluno");
-            System.out.println("5: Alterar dados - Aluno");
+            System.out.println("5: Alterar dados - Aluno (em breve)");
             System.out.println("6: Listar os alunos - ordem de cadastro (em breve)");
             System.out.println("7: Listar os alunos - ordem de média  (em breve)");
             System.out.println("8: Matricular um Aluno (em breve)");
@@ -226,10 +242,7 @@ public static boolean AlterarAluno(Aluno[] alunos, Disciplina[] disciplinas){
             ListaDisciplina(disciplinas);
         }
         if (opcao == 4) {
-            CadastrarAluno(alunos);
-        }
-        if (opcao == 5) {
-            AlterarAluno(alunos, disciplinas);
+            CadastrarAluno(alunos,disciplinas);
         }
 
     }
@@ -250,22 +263,16 @@ public static boolean AlterarAluno(Aluno[] alunos, Disciplina[] disciplinas){
         }
 
         init( alunos, disciplinas);
-        
-}
+
+}   
+        }
+    
+
 
 //Registro
-static class Aluno {
-    int cod;
-    String nome;
-    String endereco;
-    String DisMatriculado;
-    double NotasDis;
-}
 
-static class Disciplina {
-    int cod;
-    String nome;
-    String ano;
-    String NomeProf;
-}
-}
+
+
+
+//Anotações
+//equals compara o conteudo
