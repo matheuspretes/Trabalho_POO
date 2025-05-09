@@ -33,7 +33,7 @@ public class CadastroAluno {
         d.nomeProf = "Luciano";
         insercaoDiscip(disciplinas, d);
     }
-    menu(disciplinas);
+    menu(disciplinas, alunos);
 }
 public static boolean insercaoAluno(Aluno[] alunos, Aluno a){
     if (alunos != null && a != null){
@@ -176,6 +176,25 @@ public static void  CadastrarAluno(Aluno[] alunos){
     }
 }
 
+public static boolean AlterarAluno(Aluno[] alunos, Disciplina[] disciplinas){
+    boolean teste = false;
+    for (int i = 0; i < alunos.length; i++){
+        if (alunos[i] == null){
+            int j = i;
+            i = alunos.length;
+        } else{
+            int j = alunos.length;
+        }
+    }
+    System.out.println("Qual informação você quer modificar?");
+    System.out.println("Digite 1 para mudar: NOME");
+    System.out.println("Digite 2 para mudar: ENDEREÇO");
+    System.out.println("Digite 3 para mudar: DISCIPLINAS MATRICULADAS");
+    System.out.println("Digite 4 para mudar: NOTAS");
+    Scanner scn = new Scanner(System.in);
+    int opcao = scn.nextInt();
+}
+
     public static void menu(Disciplina[] disciplinas, Aluno[] alunos) {
 
         System.out.println("-------------- Menu -------------");
@@ -183,7 +202,7 @@ public static void  CadastrarAluno(Aluno[] alunos){
             System.out.println("2: Remover Disciplina");
             System.out.println("3: Listar Disciplinas");
             System.out.println("4: Cadastrar Aluno");
-            System.out.println("5: Alterar dados - Aluno (em breve)");
+            System.out.println("5: Alterar dados - Aluno");
             System.out.println("6: Listar os alunos - ordem de cadastro (em breve)");
             System.out.println("7: Listar os alunos - ordem de média  (em breve)");
             System.out.println("8: Matricular um Aluno (em breve)");
@@ -208,6 +227,9 @@ public static void  CadastrarAluno(Aluno[] alunos){
         }
         if (opcao == 4) {
             CadastrarAluno(alunos);
+        }
+        if (opcao == 5) {
+            AlterarAluno(alunos, disciplinas);
         }
 
     }
