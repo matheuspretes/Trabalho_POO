@@ -237,7 +237,7 @@ public class CadastroAluno {
                 break;
             }
         }
-        if (teste = true){
+        if (teste = true) {
             int opcaoAlterar = 0;
             System.out.println("Informe o que deseja alterar:");
             System.out.println("Digite 1 para alterar - NOME");
@@ -251,20 +251,58 @@ public class CadastroAluno {
                 opcaoAlterar = scn.nextInt();
             }
             if (opcaoAlterar == 1) {
-            System.out.println("Informe o nome do estudante: ");
-            alunos[j].nome = scn.nextLine();
+                System.out.println("Informe o nome do estudante: ");
+                alunos[j].nome = scn.nextLine();
             }
             if (opcaoAlterar == 2) {
-            System.out.println("Informe o endereço do estudante: ");
-            alunos[j].endereco = scn.nextLine();
+                System.out.println("Informe o endereço do estudante: ");
+                alunos[j].endereco = scn.nextLine();
             }
             if (opcaoAlterar == 3) {
-            System.out.println("Informe as disciplinas matriculadas do estudante: ");
-            alunos[j].DisMatriculado = scn.nextLine();
+                System.out.println("Informe as disciplinas matriculadas do estudante: ");
+                alunos[j].DisMatriculado = scn.nextLine();
             }
             if (opcaoAlterar == 4) {
-            System.out.println("Informe as notas do estudante: ");
-            alunos[j].NotasDis = scn.nextInt();
+                System.out.println("Informe as notas do estudante: ");
+                alunos[j].NotasDis = scn.nextInt();
+            }
+        } else {
+            System.out.println("Código inválido...");
+        }
+    }
+
+    public static void MatricularAluno(Aluno[] alunos, Disciplina[] disciplina) {
+        int j = 0;
+        int aux = 0;
+        for (int i = 0; i < alunos.length; i++) {
+            if (alunos[i].cod == 0) {
+                j = i;
+                break;
+            }
+        }
+
+        Scanner scn = new Scanner(System.in);
+        System.out.println("Cadastro de Aluno");
+        System.out.print("Informe o código do aluno desejado: ");
+        aux = scn.nextInt();
+        boolean teste = false;
+        for (int i = 0; i < j; i++) {
+            if (alunos[i].cod == aux) {
+                j = i;
+                teste = true;
+                break;
+            }
+        }
+        if (teste = true) {
+            System.out.println("Matrícula nova - DISCIPLINA");
+            System.out.println("Informe o código da disciplina");
+            int codNovo = scn.nextInt();
+            int jNovo = 0;
+            for (int i = 0; i < alunos.length; i++) {
+                if (disciplina[i].cod == codNovo) {
+                    jNovo = i;
+                    break;
+                }
             }
         } else {
             System.out.println("Código inválido...");
@@ -306,6 +344,9 @@ public class CadastroAluno {
         }
         if (opcao == 5) {
             AlterarAluno(alunos, disciplinas);
+        }
+        if (opcao == 8) {
+            MatricularAluno(alunos, disciplinas);
         }
 
     }
